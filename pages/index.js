@@ -24,9 +24,7 @@ export default function Home({ posts }) {
           {/* <div className="grid grid-cols-2 border border-black rounded-lg mb-10 items-center justify-items-center"> */}
           {/* <div> */}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Image src={siteMetadata.heroImage}
-              alt={siteMetadata.title}
-              width='320px' height='320px' />
+            <Image src={siteMetadata.heroImage} alt={siteMetadata.title} width='320px' height='320px' />
           </div>
           {/* </div> */}
           <div className="mx-auto text-center border rounded-lg border-gray p-4 w-1/2">
