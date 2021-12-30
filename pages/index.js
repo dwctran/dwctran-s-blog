@@ -94,7 +94,7 @@ export default function Home({ posts }) {
                       </dd>
                     </dl>
                     <div className=" xl:col-span-3">
-                      <div className="space-y-6">
+                      <div className="space-y-2">
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
                             <Link
@@ -114,10 +114,10 @@ export default function Home({ posts }) {
                           {summary}
                         </div>
                       </div>
-                      <div className="text-base font-medium leading-6">
+                      <div className="mt-2 text-base font-medium leading-6">
                         <Link
                           href={`/blog/${slug}`}
-                          className="items-stretch text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                           aria-label={`Read "${title}"`}
                         >
                           Read more &rarr;
