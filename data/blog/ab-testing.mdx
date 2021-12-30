@@ -1,0 +1,53 @@
+---
+title: AB Testing
+date: '2021-12-28'
+tags: []
+draft: false
+summary: Alaksldf
+images: ['/static/images/canada/lake.jpg']
+layout: PostLayout
+---
+
+## KPI: Conversion Rate
+
+- Conversion Rate: Percentage of users who
+  subscribe after the free trial
+
+  - Of users who convert within one week?
+    One month?...
+  - Across all users or just a subset?
+
+- Choosing a KPI
+  - Stability over time
+  - Importance across different user groups
+  - Correlation with other business factors
+
+Sensitivity: The minimum level of change we want to be able to detect in our test
+
+```python
+# calculate the p-value from our
+# group conversion rates and group sizes
+def get_pvalue (con_conv, test_conv,con_size, test_size,):
+     lift = - abs (test_conv - con_conv)
+     scale_one = con_conv * (1 con_conv) * (1 / con_size)
+     scale_two = test_conv * (1 - test_conv) * (1 / test_size)
+     scale_val = (scale_one + scale_two)**0.5
+     p_value = 2 * stats.norm.cdf (lift, loc = 0, scale = scale_val)
+     return p_value
+```
+
+```python
+# Calculate the confidence interval
+from scipy import stats
+def get_ci(test_conv, con_conv,
+     test_size, con_size, ci):
+     sd = ((test_conv * (1 - test_conv)) / test_size +
+          (con_conv * (1 - con_conv)) / con_size)**0.5
+     lift = test_conv - con_conv
+     val = stats.norm.isf((1 - ci) / 2)
+     lwr_bnd = lift - val * sd
+     upr_bnd = lift + val * sd
+     return((Lwr_bnd, upr_bnd))
+```
+
+> Can't wait to see the results!

@@ -11,9 +11,9 @@ const LayoutWrapper = ({ children }) => {
   return (
     <SectionContainer>
       <div className="flex flex-col justify-between h-screen ">
-        <header className="fixed z-10 top-0 left-0 right-0 px-40 bg-white dark:bg-slate-900 dark:border-[#f5f5f5] flex items-center justify-between py-6 border-b border-slate-900 backdrop-filter backdrop-blur-lg bg-opacity-30">
+        <header className="fixed z-10 top-0 left-0 right-0 px-40 bg-white dark:bg-slate-900 dark:border-[#f5f5f5] flex items-center justify-between py-6 border-b border-slate-900 backdrop-filter backdrop-blur-lg bg-opacity-30 dark:backdrop-filter dark:backdrop-blur-lg dark:bg-opacity-30">
           <div>
-            <Link href="/" aria-label="Tailwind CSS Blog">
+            <Link href="/" aria-label="">
               <div className="flex items-center justify-between">
                 <div className="mr-3">
                   <Logo />

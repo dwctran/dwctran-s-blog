@@ -5,8 +5,9 @@ occupation: Economics Undergraduate
 company: Foreign Trade University
 email: dinhductran189@gmail.com
 twitter: https://twitter.com/Twitter
-linkedin: https://www.linkedin.com
-github: https://github.com
+linkedin: https://www.linkedin.com/in/dwctran/
+github: https://github.com/dwctran/
+facebook: https://www.facebook.com/sm3lling
 ---
 
 Duc Tran is a university sophomore, studying under Economics Major. His real interests lay on **Data Analytics, UI/UX Design and Web Development.**

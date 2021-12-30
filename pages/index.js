@@ -41,12 +41,12 @@ export default function Home({ posts }) {
               </h1>
               {/* <p>University Sophomore, Wannabe Data Analyst</p> */}
               <Link href="/blog">
-                <button className="bg-primary-400 rounded-xl text-white font-semibold text-lg px-6 py-2 mt-8 hover:outline hover:outline-primary-400 hover:outline-offset-4 dark:bg-gray-500 dark:hover:outline dark:hover:outline-gray-500 dark:hover:outline-offset-4 mr-4">
+                <button className="bg-primary-400 rounded-xl text-white font-semibold dark:font-normal text-lg px-6 py-2 mt-8 hover:outline hover:outline-primary-400 hover:outline-offset-4 dark:bg-gray-500 dark:hover:outline dark:hover:outline-gray-500 dark:hover:outline-offset-4 mr-4">
                   Read the blog
                 </button>
               </Link>
               <Link href="/about">
-                <button className="bg-gray-300 rounded-xl text-gray-900 text-lg px-6 py-2 mt-8 hover:outline hover:outline-primary-400 hover:outline-offset-4 dark:bg-primary-500 dark:hover:outline dark:hover:outline-primary-500 dark:hover:outline-offset-4">
+                <button className="bg-gray-300 rounded-xl text-gray-900 text-lg px-6 py-2 mt-8 hover:outline dark:font-semibold hover:outline-primary-400 hover:outline-offset-4 dark:bg-primary-500 dark:hover:outline dark:hover:outline-primary-500 dark:hover:outline-offset-4">
                   More about me
                 </button>
               </Link>
@@ -66,18 +66,34 @@ export default function Home({ posts }) {
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
+            const { slug, date, title, summary, tags, images, readingTime } = frontMatter
+            // const src = { src: images[0] ? images[0] }
+            // console.log(images[0])
             return (
               <li key={slug} className="py-12">
                 <article>
-                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
+                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-6 xl:items-start">
                     <dl>
                       <dt className="sr-only">Published on</dt>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date)}</time>
+                        <time dateTime={date}>📆 {formatDate(date)}</time>
+                      </dd>
+                      {/* const src = {src: post.images[0]?.url} */}
+                      <dd>
+                        {images
+                          ? images.length > 0 && (
+                              <img
+                                src={images[0]}
+                                alt={title}
+                                style={{ 'max-width': '90%' }}
+                                layout="fixed"
+                                className="rounded-lg mt-2"
+                              />
+                            )
+                          : ''}
                       </dd>
                     </dl>
-                    <div className="space-y-5 xl:col-span-3">
+                    <div className=" xl:col-span-3">
                       <div className="space-y-6">
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
@@ -101,7 +117,7 @@ export default function Home({ posts }) {
                       <div className="text-base font-medium leading-6">
                         <Link
                           href={`/blog/${slug}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          className="items-stretch text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                           aria-label={`Read "${title}"`}
                         >
                           Read more &rarr;
