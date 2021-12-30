@@ -39,6 +39,9 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                       {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
                     </time>
                   </dd>
+                  {/* <dd>
+                    readingTime({children}).text
+                  </dd> */}
                 </div>
               </dl>
               <div>
@@ -135,6 +138,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   </div>
                 )}
               </div>
+
               <div className="pt-4 xl:pt-8">
                 <Link
                   href="/blog"

@@ -4,6 +4,18 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   content: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js', './lib/**/*.js'],
   darkMode: 'class',
+  variants: {
+    extend: {
+      backgroundColor: ['active'],
+      textDecoration: ['active', 'focus-visible'],
+      transitionProperty: ['hover', 'focus'],
+      ringColor: ['responsive', 'dark', 'focus-within', 'focus'],
+      ringOffsetColor: ['responsive', 'hover', 'dark', 'focus-within', 'focus'],
+      ringOffsetWidth: ['responsive', 'hover', 'focus-within', 'focus'],
+      ringOpacity: ['responsive', 'dark', 'focus-within', 'focus'],
+      ringWidth: ['responsive', 'focus-within', 'focus'],
+    },
+  },
   theme: {
     extend: {
       spacing: {
@@ -21,7 +33,7 @@ module.exports = {
       },
       colors: {
         primary: colors.teal,
-        gray: colors.neutral,
+        gray: colors.slate,
       },
       typography: (theme) => ({
         DEFAULT: {

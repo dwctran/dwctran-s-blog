@@ -6,6 +6,7 @@ import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
 import Image from '@/components/Image'
 import NewsletterForm from '@/components/NewsletterForm'
+import headerNavLinks from '@/data/headerNavLinks'
 
 const MAX_DISPLAY = 5
 
@@ -21,17 +22,39 @@ export default function Home({ posts }) {
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-          {/* <div className="grid grid-cols-2 border border-black rounded-lg mb-10 items-center justify-items-center"> */}
-          {/* <div> */}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Image src={siteMetadata.heroImage} alt={siteMetadata.title} width='320px' height='320px' />
+          <div className="grid grid-cols-3 mb-10 items-center justify-items-center">
+            <div>
+              <div className="col-span-1" style={{ display: 'flex', justifyContent: 'center' }}>
+                <Image
+                  src={siteMetadata.heroImage}
+                  alt={siteMetadata.title}
+                  width="320px"
+                  height="320px"
+                  className="absolute"
+                />
+              </div>
+            </div>
+            <div className=" col-span-2 mx-auto border-gray p-4">
+              <h1 className="text-4xl font-semibold text-gray-900 dark:text-gray-100 leading-10">
+                I'm <span className="text-4xl font-semibold text-primary-400">Tran Dinh Duc</span>.
+                I'm a university sophomore, Data Analytics self-learner.
+              </h1>
+              {/* <p>University Sophomore, Wannabe Data Analyst</p> */}
+              <Link href="/blog">
+                <button className="bg-primary-400 rounded-xl text-white font-semibold text-lg px-6 py-2 mt-8 hover:outline hover:outline-primary-400 hover:outline-offset-4 dark:bg-gray-500 dark:hover:outline dark:hover:outline-gray-500 dark:hover:outline-offset-4 mr-4">
+                  Read the blog
+                </button>
+              </Link>
+              <Link href="/about">
+                <button className="bg-gray-300 rounded-xl text-gray-900 text-lg px-6 py-2 mt-8 hover:outline hover:outline-primary-400 hover:outline-offset-4 dark:bg-primary-500 dark:hover:outline dark:hover:outline-primary-500 dark:hover:outline-offset-4">
+                  More about me
+                </button>
+              </Link>
+              {/* <Link href = '/about'>
+                <button className='hover:outline hover:outline-offset-2'>More about me</button>
+              </Link> */}
+            </div>
           </div>
-          {/* </div> */}
-          <div className="mx-auto text-center border rounded-lg border-gray p-4 w-1/2">
-            <p className="text-lg font-semibold text-primary">I'm Tran Dinh Duc</p>
-            <p>University Sophomore, Wannabe Data Analyst</p>
-          </div>
-          {/* </div> */}
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Latest
           </h1>
