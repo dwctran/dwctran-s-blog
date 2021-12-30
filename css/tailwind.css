@@ -24,6 +24,11 @@ input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
 
-main {
-  margin-top: 8rem;
-}
+/* main {
+  margin-top: 6rem;
+} */
+/* .active-v {
+  font-weight: bold;
+  color: #2dd4bf;
+  cursor: pointer;
+} */

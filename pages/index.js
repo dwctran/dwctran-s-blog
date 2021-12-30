@@ -6,7 +6,7 @@ import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
 import Image from '@/components/Image'
 import NewsletterForm from '@/components/NewsletterForm'
-import headerNavLinks from '@/data/headerNavLinks'
+// import headerNavLinks from '@/data/headerNavLinks'
 
 const MAX_DISPLAY = 5
 
@@ -22,7 +22,7 @@ export default function Home({ posts }) {
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-          <div className="grid grid-cols-3 mb-10 items-center justify-items-center">
+          <div className="grid grid-cols-3 mb-16 mt-14 items-center justify-items-center">
             <div>
               <div className="col-span-1" style={{ display: 'flex', justifyContent: 'center' }}>
                 <Image
@@ -41,12 +41,12 @@ export default function Home({ posts }) {
               </h1>
               {/* <p>University Sophomore, Wannabe Data Analyst</p> */}
               <Link href="/blog">
-                <button className="bg-primary-400 rounded-xl text-white font-semibold dark:font-normal text-lg px-6 py-2 mt-8 hover:outline hover:outline-primary-400 hover:outline-offset-4 dark:bg-gray-500 dark:hover:outline dark:hover:outline-gray-500 dark:hover:outline-offset-4 mr-4">
+                <button className="bg-primary-400 rounded-xl text-white font-semibold dark:font-medium dark:text-gray-900 text-lg px-6 py-2 mt-8 hover:outline hover:outline-primary-400 hover:outline-offset-4 dark:bg-gray-500 dark:hover:outline dark:hover:outline-gray-500 dark:hover:outline-offset-4 mr-4">
                   Read the blog
                 </button>
               </Link>
               <Link href="/about">
-                <button className="bg-gray-300 rounded-xl text-gray-900 text-lg px-6 py-2 mt-8 hover:outline dark:font-semibold hover:outline-primary-400 hover:outline-offset-4 dark:bg-primary-500 dark:hover:outline dark:hover:outline-primary-500 dark:hover:outline-offset-4">
+                <button className="bg-gray-300 rounded-xl font-medium text-gray-900 text-lg px-6 py-2 mt-8 hover:outline dark:font-semibold dark:text-gray-100 hover:outline-primary-400 hover:outline-offset-4 dark:bg-primary-500 dark:hover:outline dark:hover:outline-primary-500 dark:hover:outline-offset-4">
                   More about me
                 </button>
               </Link>

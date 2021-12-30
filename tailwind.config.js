@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       backgroundColor: ['active'],
       textDecoration: ['active', 'focus-visible'],
-      transitionProperty: ['hover', 'focus'],
+      transitionProperty: ['hover', 'focus', 'active'],
       ringColor: ['responsive', 'dark', 'focus-within', 'focus'],
       ringOffsetColor: ['responsive', 'hover', 'dark', 'focus-within', 'focus'],
       ringOffsetWidth: ['responsive', 'hover', 'focus-within', 'focus'],
