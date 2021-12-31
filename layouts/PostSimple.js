@@ -8,7 +8,7 @@ import Comments from '@/components/comments'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
 export default function PostLayout({ frontMatter, authorDetails, next, prev, children }) {
-  const { date, title, readingTime } = frontMatter
+  const { date, title, readingTime, wordsCount } = frontMatter
 
   return (
     <SectionContainer>
@@ -17,15 +17,15 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
       <article>
         <div>
           <header>
-            <div className="pb-10 space-y-1 text-center border-b border-gray-200 dark:border-gray-700">
+            <div className="pt-6 pb-10 space-y-1 text-center border-b border-gray-200 dark:border-gray-700">
               <dl>
                 <div>
                   <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400 mb-2">
+                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400 mb-4">
                     <time dateTime={date}>📆 {formatDate(date)}</time>
                   </dd>
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400 mb-2">
-                    ⏰{Math.ceil(readingTime.minutes)} mins read
+                    ⏰{Math.ceil(readingTime.minutes)} mins read • 📝{wordsCount} words
                   </dd>
                 </div>
               </dl>

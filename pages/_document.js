@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+// import LayoutWrapper from '../components/LayoutWrapper'
 class MyDocument extends Document {
   render() {
     return (

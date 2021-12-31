@@ -8,12 +8,12 @@ import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 // import NavLink from './NavLink'
 import { useRouter } from 'next/router'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 // import React, {useState} from 'react';
 const variants = {
-  hidden: { opacity: 0, x: -200, y: 0 },
+  hidden: { opacity: 0, x: 0, y: 20 },
   enter: { opacity: 1, x: 0, y: 0 },
-  exit: { opacity: 0, x: 0, y: -100 },
+  exit: { opacity: 0, x: 0, y: 20 },
 }
 // const [activeMenu, setActiveMenu] = useState();
 const LayoutWrapper = ({ children }) => {
@@ -64,16 +64,18 @@ const LayoutWrapper = ({ children }) => {
             <MobileNav />
           </div>
         </header>
-        <motion.main
-          className="mt-24 mb-auto"
-          initial="hidden"
-          animate="enter"
-          exit="exit"
-          variants={variants}
-          transition={{ type: 'linear' }}
-        >
+        <AnimatePresence exitBeforeEnter initial={true}>
+          {/* className="mt-24 mb-auto" */}
+          {/* // initial="hidden"
+            // animate="enter"
+            // exit="exit"
+            // variants={variants}
+            // transition={{ duration: 0.4, type: 'easeInOut' }} */}
+
+          {/* <> */}
           {children}
-        </motion.main>
+          {/* </> */}
+        </AnimatePresence>
         <Footer />
       </div>
     </SectionContainer>
