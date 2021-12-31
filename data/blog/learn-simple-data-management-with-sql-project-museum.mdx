@@ -1,0 +1,73 @@
+---
+title: Learn Simple Data Management with SQL (Project Museum)
+date: '2021-12-31'
+tags: ['sql', 'data']
+draft: false
+summary: Complete a simple Data Management project with mySQL server and Arctype - a SQL Editor. This project was completed under DataCamp Data Analyst Certification.
+images: ['/static/images/sql-data-management.png']
+layout: PostLayout
+---
+
+> This project is done with MySQL Server and Arctype - A GUI SQL Editor. You can find out more at [MySQL](https://dev.mysql.com/downloads/mysql/) to setup MySQL Server and use MySQL Workbench as a default SQL Editor; or [Arctype](https://arctype.com/) to have some fun with Arctype.
+
+<TOCInline toc={props.toc} exclude="Overview" toHeading={3} asDisclosure="true" />
+
+## Project Description
+
+- You are working with a local museum. The museum is about to launch a new interactive application on Roman emperors and your job is to prepare the data that it will display.
+- The museum’s database has a table, named `roman_emperors`, with basic information on all emperors who ruled from 1 AD onwards. You will need to clean the data before the app can launch.
+- Your query will need to return a table that contains the following columns (with the given alias) and meets the specified requirements. You will use the data contained in the `roman_emperors` table.
+
+### Project Requirements
+
+![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639042121396/i0L6VJdE2.png)
+
+### Short name and Full name
+
+- With this task, we can simply use `LOWER()` and `UPPER()` function from mySQL. As the name of the emperors should be unique, we should add `DISTINCT` statement following `SELECT` statement.
+  ![carbon.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639042583109/pqoyRAVBC.png)
+
+### Birthplace
+
+- You can accomplish this requirement with a simple `CASE-WHEN` statement, though it's not so efficient. We will check if each of the two column `birth_city` and `birth_province` `IS NULL` or not, then use `CONCAT()` function to join the two column.
+  ![carbon (1).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639044728229/4pbAk9bOD.png)
+
+### Age
+
+- This requirement requires nested functions to, **first**, convert the initial data in `death` and `birth` columns (original data type is varchar) to datetime value, extract the YEAR value from the converted data, perform calculation, **then** use `COALESCE()` function to return the suitable result.
+- First we have `STR_TO_DATE()` function to convert a string to a datetime value, date format should be specified as an argument. In this case, we will simply need `YEAR-MONTH-DAY` value.
+  ![carbon (2).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639044810382/ksfktJEmS.png)
+
+### Reign
+
+- Same step should be applied to `reign_end` and `reign_start` columns to get the `reign` value.
+  ![carbon (3).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639045014236/2FwbA0dc1.png)
+
+### Cause of Death
+
+- Simple `CASE-WHEN` statement will solve the problem. Note that we will subset only five specific values **Assassination, Natural Causes, Execution, Died in Battle and Suicide.**
+  ![carbon (4).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639045200881/7X6hoyDoK.png)
+
+### Era
+
+- Another `CASE-WHEN` statement! We could use the same way as in Age and Reign columns to extract the `YEAR` value, then make comparisons to get appropriate results.
+  ![carbon (5).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639045373942/PWvzepfBI.png)
+  > Remember to sort the `NAME` column by ascending order just simply by using `ORDER BY` statement.
+
+## Final result
+
+**If you do it correctly, we'll have a table ready for the museum app launch!**
+
+Here is the final code:
+
+![carbon (6).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639046069091/vq0vCvSj1.png)
+
+And the final table (truncated)!
+
+| NAME          | FULL_NAME                                              | BIRTH_PLACE       | AGE | REIGN | CAUSE OF DEATH | ERA        |
+| ------------- | ------------------------------------------------------ | ----------------- | --- | ----- | -------------- | ---------- |
+| AEMILIAN      | caesar marcvs aemilivs aemilianvs avgvstvs             | Unknown, Africa   | 46  | 0     | Assassination  | Principate |
+| ANTONIUS PIUS | caesar titvs aelivs hadrianvs antoninvs avgvstvs pivs  | Lanuvium, Italia  | 75  | 23    | Natural Causes | Principate |
+| AURELIAN      | caesar lvcivs domitivs avrelianvs avgvstvs             | Sirmium, Pannonia | 61  | 5     | Assassination  | Principate |
+| BALBINUS      | caesar decimvs caelivs calvinvs balbinvs pivs avgvstvs | Unknown           | 60  | 0     | Assassination  | Principate |
+| CALIGULA      | gaivs ivlivs caesar avgvstvs germanicvs                | Antitum, Italia   | 29  | 4     | Assassination  | Principate |

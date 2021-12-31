@@ -89,7 +89,7 @@ export default function Home({ posts }) {
                                 alt={title}
                                 style={{ 'max-width': '90%' }}
                                 layout="fixed"
-                                className="rounded-lg mt-2"
+                                className="rounded-lg mt-2 border-2 border-primary-900 dark:border-none "
                               />
                             )
                           : ''}

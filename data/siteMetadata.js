@@ -1,9 +1,9 @@
 const siteMetadata = {
-  v1Image: '/static/images/Database_perspective_matte.png',
+  logo: '/static/images/logo3.svg',
   heroImage: '/static/images/ReadyPlayerMe-Avatar.png',
   title: 'Dinh-Duc Tran | Wannabe Data Analyst',
   author: 'Dinh-Duc Tran',
-  headerTitle: 'dwctran',
+  headerTitle: 'dwctran.',
   description: 'A place where Duc shared what he learned.',
   language: 'en-us',
   theme: 'system', // system, dark or light

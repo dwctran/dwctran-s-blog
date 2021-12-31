@@ -1,6 +1,7 @@
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
+import Logo from '/public/static/images/logo3.svg'
+import Image from './Image'
 import Link from './Link'
 import SectionContainer from './SectionContainer'
 import Footer from './Footer'
@@ -21,15 +22,15 @@ const LayoutWrapper = ({ children }) => {
   return (
     <SectionContainer>
       <div className="flex flex-col justify-between h-screen ">
-        <header className="grid grid-cols-4 justify-items-center items-center fixed z-10 top-0 left-0 right-0 px-40 bg-white dark:bg-slate-900 dark:border-[#f5f5f5] py-6 border-b border-slate-900 backdrop-filter backdrop-blur-lg bg-opacity-30 dark:backdrop-filter dark:backdrop-blur-lg dark:bg-opacity-30">
+        <header className="grid grid-cols-4 justify-items-center items-center fixed z-10 top-0 left-0 right-0 px-40 bg-white dark:bg-slate-900 dark:border-[#334155] py-6 border-b border-[#E2E8F0] backdrop-filter backdrop-blur-lg bg-opacity-30 dark:backdrop-filter dark:backdrop-blur-lg dark:bg-opacity-30">
           <div className="col-span-1">
             <Link href="/" aria-label="">
               <div className="flex items-center justify-center">
-                <div className="mr-3">
-                  <Logo />
+                <div className="mr-3 ">
+                  <Logo className="" />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
-                  <div className="text-slate-900 dark:text-gray-100 hidden h-6 text-2xl font-semibold sm:block">
+                  <div className="text-slate-900 dark:text-gray-100 hidden text-2xl font-semibold sm:block">
                     {siteMetadata.headerTitle}
                   </div>
                 ) : (

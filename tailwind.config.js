@@ -106,6 +106,7 @@ module.exports = {
         },
         dark: {
           css: {
+            '--tw-prose-headings': theme('colors.gray.200'),
             color: theme('colors.gray.300'),
             a: {
               color: theme('colors.primary.500'),

@@ -50,14 +50,27 @@ export default function ListLayout({ posts, title, initialDisplayPosts = [], pag
         <ul>
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((frontMatter) => {
-            const { slug, date, title, summary, tags, readingTime } = frontMatter
+            const { slug, date, title, summary, tags, images } = frontMatter
             return (
               <li key={slug} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
+                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-6 xl:items-start">
                   <dl>
                     <dt className="sr-only">Published on</dt>
                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400 mb-2">
                       <time dateTime={date}>📆 {formatDate(date)}</time>
+                    </dd>
+                    <dd>
+                      {images
+                        ? images.length > 0 && (
+                            <img
+                              src={images[0]}
+                              alt={title}
+                              style={{ 'max-width': '90%' }}
+                              layout="fixed"
+                              className="rounded-lg mt-2 border-2 border-primary-900 dark:border-gray-300"
+                            />
+                          )
+                        : ''}
                     </dd>
                     {/* <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400 mb-2">
                       ⏰{Math.ceil(readingTime.minutes)} mins read
