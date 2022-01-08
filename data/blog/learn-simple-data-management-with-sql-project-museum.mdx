@@ -12,49 +12,49 @@ layout: PostLayout
 
 <TOCInline toc={props.toc} exclude="Overview" toHeading={3} asDisclosure="true" />
 
-## Project Description
+## 1. Project Description
 
 - You are working with a local museum. The museum is about to launch a new interactive application on Roman emperors and your job is to prepare the data that it will display.
 - The museum’s database has a table, named `roman_emperors`, with basic information on all emperors who ruled from 1 AD onwards. You will need to clean the data before the app can launch.
 - Your query will need to return a table that contains the following columns (with the given alias) and meets the specified requirements. You will use the data contained in the `roman_emperors` table.
 
-### Project Requirements
+### - Project Requirements
 
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639042121396/i0L6VJdE2.png)
 
-### Short name and Full name
+### - Short name and Full name
 
 - With this task, we can simply use `LOWER()` and `UPPER()` function from mySQL. As the name of the emperors should be unique, we should add `DISTINCT` statement following `SELECT` statement.
   ![carbon.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639042583109/pqoyRAVBC.png)
 
-### Birthplace
+### - Birthplace
 
 - You can accomplish this requirement with a simple `CASE-WHEN` statement, though it's not so efficient. We will check if each of the two column `birth_city` and `birth_province` `IS NULL` or not, then use `CONCAT()` function to join the two column.
   ![carbon (1).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639044728229/4pbAk9bOD.png)
 
-### Age
+### - Age
 
 - This requirement requires nested functions to, **first**, convert the initial data in `death` and `birth` columns (original data type is varchar) to datetime value, extract the YEAR value from the converted data, perform calculation, **then** use `COALESCE()` function to return the suitable result.
 - First we have `STR_TO_DATE()` function to convert a string to a datetime value, date format should be specified as an argument. In this case, we will simply need `YEAR-MONTH-DAY` value.
   ![carbon (2).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639044810382/ksfktJEmS.png)
 
-### Reign
+### - Reign
 
 - Same step should be applied to `reign_end` and `reign_start` columns to get the `reign` value.
   ![carbon (3).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639045014236/2FwbA0dc1.png)
 
-### Cause of Death
+### - Cause of Death
 
 - Simple `CASE-WHEN` statement will solve the problem. Note that we will subset only five specific values **Assassination, Natural Causes, Execution, Died in Battle and Suicide.**
   ![carbon (4).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639045200881/7X6hoyDoK.png)
 
-### Era
+### - Era
 
 - Another `CASE-WHEN` statement! We could use the same way as in Age and Reign columns to extract the `YEAR` value, then make comparisons to get appropriate results.
   ![carbon (5).png](https://cdn.hashnode.com/res/hashnode/image/upload/v1639045373942/PWvzepfBI.png)
   > Remember to sort the `NAME` column by ascending order just simply by using `ORDER BY` statement.
 
-## Final result
+## 2. Final result
 
 **If you do it correctly, we'll have a table ready for the museum app launch!**
 

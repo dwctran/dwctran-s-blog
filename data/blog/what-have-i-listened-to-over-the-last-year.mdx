@@ -1,0 +1,126 @@
+---
+title: What have I listened to over the last year?
+date: '2022-01-08'
+tags: ['visualization', 'data', 'tableau']
+draft: false
+summary: Create a dashboard visualizing my own Spotify data with Python and Tableau.
+images: ['/static/images/spotify-data.png']
+layout: PostLayout
+---
+
+> This project is inspired by the model work by [Anna Bode](https://annebode.medium.com/). See her stunning hands-on visualization tutorials [here](https://annebode.medium.com/).
+
+## 1. Request the data
+
+Request the data needed from Spotify [here](https://www.spotify.com/us/account/privacy/). Wait for a few days before you can get your hands on your data.
+
+## 2. Prepare the data
+
+Using the files that Spotify has given us, let's start create a dataframe that stores all our streaming history data. As my Spotify Library is rather limited, I do not include it in my project, as well as each song's specific URI. If you want to dive deeper into this visualization project, please follow the original article [here](https://towardsdatascience.com/visualizing-spotify-data-with-python-tableau-687f2f528cdd).
+
+### - Import the libraries
+
+```Python
+import panda as pd
+import numpy as np
+```
+
+### - Create streaming history dataframe
+
+```python
+df_stream = pd.read_json('StreamingHistory0.json')
+df_stream.head()
+```
+
+![df_stream.head()](/static/images/spotify/1.png)
+
+### - Create a `uniqueID` identifier for each song, which we will use later in Tableau.
+
+```python
+df_stream['uniqueID'] = df_stream['artistName'] + ': ' + df_stream['trackName']
+```
+
+![uniqueID](/static/images/spotify/2.png)
+
+### - Convert to local time
+
+As the `endTime` provided in the dataset is in the UTC time zone, we need to convert it to our local time. (Modify the code according to your preference).
+
+```python
+time_difference = 7
+df_stream['endTime'] = pd.to_datetime(df_stream['endTime'])
+df_stream['endTime_local'] = df_stream['endTime'] +
+                             pd.to_timedelta(time_difference, unit='h')
+```
+
+![localTime](/static/images/spotify/3.png)
+
+### - Finally, convert `msPlayed` to `minutesListened`
+
+```Python
+df_stream['minutesListened'] = df_stream['msPlayed'] / 60000
+```
+
+![minutesListened](/static/images/spotify/4.png)
+
+### - Drop unnecessary columns and save to csv file
+
+```Python
+df_stream.drop(['endTime', 'msPlayed'], axis = 1, inplace = True)
+df_stream.to_csv('StreamingDataSpotify.csv')
+```
+
+![final_dataframe](/static/images/spotify/5.png)
+
+## 3. Load the data into Tableau
+
+- Connect to your csv file (StreamingDataSpotify.csv) as a data source. Remember to drop/hide the first column, which is the initial index column in the DataFrame (or you can drop the index column when save to csv file by using `index = False` argument).
+
+![load_data](/static/images/spotify/tableau1.png)
+
+- Then click on the first sheet and start visualizing the data!
+
+## 4. Visualize the data
+
+### - Top Artists
+
+- Most popular artists by minutes listened, with individual songs making up colorful segments.
+
+![top_artists](/static/images/spotify/tableau2.png)
+
+### - Artist Breadth
+
+- Number of songs by each artist I’ve listened to for >1 minute and >1 stream.
+
+![artists_breadth](/static/images/spotify/tableau3.png)
+
+- Sort the **Artist Name** by distinct count of **Track Name** in descending order to achieve the final look.
+
+### - Top Songs
+
+- Most popular songs by minutes listened.
+
+![top_songs](/static/images/spotify/tableau4.png)
+
+- Sort the **Unique ID** by sum of **Minutes Listened** in descending order to achieve the final look.
+
+### - Listenership by Month
+
+- Total number of minutes listened by each month throughout the year.
+
+![listener_month](/static/images/spotify/tableau5.png)
+
+### Listenership by Hour
+
+- Total number of minutes listened at each hour timeframe.
+
+![listener_hour](/static/images/spotify/tableau6.png)
+
+## 5. Final dashboard and some insights
+
+![dashboard](/static/images/spotify/tableau7.png)
+
+- The track that I listened to most is **Rain in Forest White Noise | Sleep, Study or Focus to Rainstorm in 8 hours** produced by **Relaxing White Noise** channel. Actually, I'm always a big fan when it comes to productive-working methods and listening to white noise is not an exception. It was only after I subscribed to Spotify premium and my work and study happened entirely on the Internet that I started to listen to this channel more than ever.
+- **Ha Anh Tuan** and **Son Tung M-TP** are the top two artists, having many tracks that I spent most of the time listening to. They are local artists and are highly popular in my country. **Dua Lipa** actually has many tracks that I often repeatedly listened to during lockdown and **ABBA's Dancing Queen** is always on repeat.
+- January, 2020 was the time our traditional Tet holiday takes place and I didn't have to go to school, I have more time to listen to music. April was when I attended a three-week military camp as a compulsory course in the university's curriculum, I only carried my phone so Spotify, with other games and entertainment apps, were indispensible. October was when I had the chance to subscribe to Spotify Premium under Student Plan. No more advertisement, I could enjoy the music more comfortably.
+- 9 o'clock in the morning and after 9 at night were the time that I found myself most productive. And listening to music while studying/working at these times has been my habit over the last year.
